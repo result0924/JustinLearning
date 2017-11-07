@@ -4,14 +4,14 @@
 ## ssh key
 ```
 ls ~/.ssh 
-#列出目前擁有的ssh key
+#ls your ssh key
 
 ssh-keygen
-#創造一個ssh key
+#create a ssh key
 
 cat ~/.ssh/xxx.pub | pbcopy
-#直接copy公開金鑰
-#pbcopy mac內建的複製快速鍵
+#copy your public key
+`pbcopy` // mac's keyboard shortcut, can let user copy what they want to copy
 ```
 ## knife-solo
 ```
