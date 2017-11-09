@@ -42,6 +42,29 @@ docker-machine rm demo
 docker playground(https://labs.play-with-docker.com/) # docker 的線上操作環境
 ```
 
-#Docker Engine
-![Docker Engine flow](https://github.com/result0924/serverLearning/blob/master/image/engine-components-flow.png)
+### Docker Engine <br>
+![Docker Engine flow](https://github.com/result0924/JustinLearning/blob/master/image/engine-components-flow.png)
+
+### Docer Hub(https://hub.docker.com/)<br>
+like git can store your image
+
+// install ubuntu image
+```
+docker pull ubuntu
+```
+// list docker images
+```
+docker images
+```
+// del image
+```
+docker image rm `IMAGE ID`
+docker image rm `REPOSITORY:TAG`
+```
+
+### image vs container<br>
+image : about storing and moving your app<br>
+container: about running your app
+
+
 
