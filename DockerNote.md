@@ -32,11 +32,11 @@ Docker Machine是Docker提供的一個工具、通過這工具可以很方便的
 ```
 - install docker machine (https://docs.docker.com/machine/install-machine/#install-machine-directly)
 ```
-docker-machine create demo
+$ docker-machine create demo
 #建立一個demo的docker machine
-docker-machine ls
+$ docker-machine ls
 #查看正在運行的docker-machine
-docker-machine rm demo
+$ docker-machine rm demo
 #刪除demo這個machine
 
 docker playground(https://labs.play-with-docker.com/) # docker 的線上操作環境
@@ -48,23 +48,88 @@ docker playground(https://labs.play-with-docker.com/) # docker 的線上操作�
 ### Docer Hub(https://hub.docker.com/)<br>
 like git can store your image
 
-// install ubuntu image
-```
-docker pull ubuntu
-```
-// list docker images
-```
-docker images
-```
-// del image
-```
-docker image rm `IMAGE ID`
-docker image rm `REPOSITORY:TAG`
-```
 
 ### image vs container<br>
 image : about storing and moving your app<br>
 container: about running your app
+
+### docker image
+
+// install ubuntu image
+```
+$ docker image pull ubuntu
+```
+// list docker images
+```
+$ docker image ls
+```
+// del image
+```
+$ docker image rm `IMAGE ID`
+$ docker image rm `REPOSITORY:TAG`
+```
+
+// implement docker no need sudo
+```
+$ sudo groupadd docker
+$ sudo gpasswd -a ${USER} docker
+$ sudo service docker restart
+```
+
+### docker container
+// create docker container
+```
+$ docker container create busybox
+```
+
+// list docker container
+```
+$ docker container ls -a
+// -a show all status
+// if not add -a will only show status=
+```
+
+// start docker container
+```
+$ docker container start container_id
+```
+then fail become `status=exited` because command=`sh`
+if you want to start a container and running
+you must add command like
+```
+$ docker container create image sh -c "while true; do sleep 3600; done"
+```
+```
+$ docker container start container_id
+```
+then container all running
+because command continue running
+
+// delete docker container
+```
+$ docker container rm container_id
+```
+// create and run the container
+```
+$ docker container run -d --name demo busybox sh -c "while true; do sleep 3600; done"
+// -d background thread
+```
+
+### Note
+// del all status=exited container
+```
+$ docker container ls -f status=created | awk '{print$1}' | awk 'NR>1' | xargs docker container start
+// show all status=exited container
+// show first column
+// remove one raw
+// delete all list container id
+```
+or you can
+```
+$ docker container start $(docker container ls -q -f status=created)
+// -q display all numeric IDs
+```
+
 
 
 
