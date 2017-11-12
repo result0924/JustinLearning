@@ -1,5 +1,8 @@
 # Docker Note
 
+## Refer
+- docker k8s note(http://docker-k8s-lab.readthedocs.io/en/latest/)
+
 ## Docker
 
 - Docker is a shipping container system for code
@@ -197,7 +200,7 @@ $ sudo ip netns exec blue ip addr add 192.168.1.2/24 dev blue-veth-b
 ```
 let blue-veth-b up
 ```
-# sudo ip netns exec blue ip link set dev blue-veth-b up
+$ sudo ip netns exec blue ip link set dev blue-veth-b up
 ```
 let blue-veth-a up
 ```
@@ -208,4 +211,79 @@ ping blue-veth-b test network connect
 $ ping 192.168.1.2
 ```
 
+### Docker namework driver
+list all docker network
+```
+$ docker network ls
+# will see `bridge`、`host` and `null`
+```
+list detail network information
+```
+$ docker network inspect `network_id` or `name`
+```
+add container
+```
+$ docker run -d --name test1 busybox sh -c "while true; do sleep 2000;done"
+```
+add other container
+```
+$ docker run -d --name test2 busybox sh -c "while true; do sleep 2000;done"
+```
+entry test1 container
+```
+$ docker exec -it test1  sh
+```
+link test1 container to test2 container
+```
+$ docker run -d --name test2 --link test1 busybox sh -c "while true; do sleep 2000;done"
+```
+create docker bridge
+```
+$ docker network create -d bridge my-bridge
+```
+connect container to my-bridge
+```
+$ docker run -d --name test2 --network my-bridge busybox sh -c "while true; do sleep 2000;done"
+```
+move container's to other bridge
+```
+$ docker network connect my-bridge test1
+```
+show my-bridge's info
+```
+$ docker network inspect my-bridge
+```
+if network is not default bridge they can use name to connect
 
+### container 端口映射
+create a container
+```
+$ docker run -d nginx
+```
+look container's ip address
+```
+$ docker container inspect container_id
+```
+stop conatiner
+```
+$ docker constainer stop container_id
+```
+delete conatiner
+```
+$ docker container rm container_id
+```
+re create nginx
+```
+$ docker run -d --name web -p 80:80 nginx
+# -p is conatner to localhost's ip mapping
+```
+
+### create and use host
+```
+$ docker netowr ls
+## NAME is host
+```
+if container can connet localhost in host network
+```
+$ docker run -d --name web --nework host nginx
+```
