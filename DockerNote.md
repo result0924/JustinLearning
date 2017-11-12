@@ -130,6 +130,82 @@ $ docker container start $(docker container ls -q -f status=created)
 // -q display all numeric IDs
 ```
 
+### Linux network namespace
+// list namespace
+```
+$ sudo ip netns list
+```
 
+// create namespace
+```
+$ sudo ip netns add blue
+```
+
+// delete namespace
+```
+$ sudo ip netns delete blue
+```
+
+// list namespace structure
+```
+$ sudo ip netns exec blue ip a
+#show 
+1: lo"<LOOPBACK> mtu 65536 qdisc noop state `DOWN`
+  link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+  
+```
+and we will see noop state is `DOWN`
+how to become up
+```
+$ sudo ip netns exec blue ip link set dev lo up
+```
+
+// list all ip
+```
+$ ip link
+```
+
+### abuout veth (connet two machine)
+- Refer(http://cizixs.com/2017/02/10/network-virtualization-network-namespace)
+
+// add ip link
+```
+$ sudo ip link add blue-veth-a type veth peer name blue-veth-b
+```
+and 
+```
+$ ip link
+# will see
+add two ip `blue-veth-b` and `blue-veth-a`
+```
+add blue-veth-b to blue namespace
+```
+$ sudo ip link set blue-veth-b netns blue
+```
+show blue namespace's ip link
+```
+$ sudo ip netns exec blue ip link
+# will see blue-veth-b in blue namespace
+```
+set ip address to blue-veth-a
+```
+$ sudo ip addr add 192.168.1.1/24 dev blue-veth-a
+```
+set ip address to blue-veth-b
+```
+$ sudo ip netns exec blue ip addr add 192.168.1.2/24 dev blue-veth-b
+```
+let blue-veth-b up
+```
+# sudo ip netns exec blue ip link set dev blue-veth-b up
+```
+let blue-veth-a up
+```
+$ sudo ip link set dev blue-veth-a up
+```
+ping blue-veth-b test network connect
+```
+$ ping 192.168.1.2
+```
 
 
