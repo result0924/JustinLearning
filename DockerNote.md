@@ -2,6 +2,7 @@
 
 ## Refer
 - docker k8s note(http://docker-k8s-lab.readthedocs.io/en/latest/)
+- github (https://github.com/xiaopeng163/docker-k8s-lab)
 
 ## Docker
 
@@ -287,3 +288,33 @@ if container can connet localhost in host network
 ```
 $ docker run -d --name web --nework host nginx
 ```
+
+### build an image (rdeis and flask)
+build a container redis
+```
+$ docker run -d --name redis redis
+```
+buid a image
+```
+$ docker build -t result0924/falsk-redis:latest
+```
+look your image
+```
+$ docker image ls
+```
+build a container web
+```
+$ docker run -d --name web --link redis -p 5000:5000 result0924/flask-redis
+```
+show your conainer
+```
+$ docker container ls
+```
+test your container
+```
+$ curl 127,9,9,1:5000
+```
+
+### what is overlay/underlay network and vxlan(https://www.youtube.com/watch?v=Jqm_4TMmQz8)
+
+### two host in vagrant(https://github.com/xiaopeng163/docker-k8s-lab/blob/master/lab/k8s/multi-node/vagrant/Vagrantfile)
