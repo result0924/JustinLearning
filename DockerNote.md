@@ -317,4 +317,19 @@ $ curl 127,9,9,1:5000
 
 ### what is overlay/underlay network and vxlan(https://www.youtube.com/watch?v=Jqm_4TMmQz8)
 
-### two host in vagrant(https://github.com/xiaopeng163/docker-k8s-lab/blob/master/lab/k8s/multi-node/vagrant/Vagrantfile)
+- two host in vagrant(https://github.com/xiaopeng163/docker-k8s-lab/blob/master/lab/k8s/multi-node/vagrant/Vagrantfile)
+
+- install etcd(use for check docker multi network status)
+check docker network status
+```
+$ ./etcdctl cluster-health
+```
+
+- multi-container apps are a hassle
+  + Build images from Dockerfiles
+  + pull images from the Hub or a private registry Configure and create containers
+  + Start and stop containers
+  
+Compose is a tool for defining and running multi-container Docker applications.<br/>
+With Compose, you use a Compose file to configure your application's services.<br/>
+Then, using a single command, you create and start all the services from your configuration.
