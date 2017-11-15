@@ -333,3 +333,16 @@ $ ./etcdctl cluster-health
 Compose is a tool for defining and running multi-container Docker applications.<br/>
 With Compose, you use a Compose file to configure your application's services.<br/>
 Then, using a single command, you create and start all the services from your configuration.
+
+The Compose file is a YAML file defining `services`, `networks` and `volumes`.<br/>
+The default path for a Compose file is ./docker-compose.yml
+
+- Services
+  + Each service is a container, the image used by the container could be build from a particular Dockerfile or pull from Registry.
+  + Link creating a container through docker run command, we can set some configuration for this container like network, links, volumes
+  
+- Networks
+  + The network used to connect containers. Like creating network through `docker network create -d` command.
+  + The network should be used during container creation.
+  
+
