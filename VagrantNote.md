@@ -162,3 +162,5 @@ Chef Client finished, 492/1082 resources updated in 09 minutes 30 seconds
 Chef Server Reconfigured!
 ```
 
+- two host in vagrant(https://github.com/xiaopeng163/docker-k8s-lab/blob/master/lab/k8s/multi-node/vagrant/Vagrantfile)
+
