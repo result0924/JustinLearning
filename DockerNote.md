@@ -10,7 +10,7 @@
   - Build once run anywhere
   
 - Containers vs VMs
-![ContainersVSVMs](https://github.com/result0924/serverLearning/blob/master/image/containersVSvms.png)
+![ContainersVSVMs](https://github.com/result0924/JustinLearning/blob/master/image/containersVSvms.png)
 
 ```
 虛擬化技術需要一個Hypervisor。
