@@ -2,7 +2,8 @@
 
 ## Refer
 - docker k8s note(http://docker-k8s-lab.readthedocs.io/en/latest/)
-- github (https://github.com/xiaopeng163/docker-k8s-lab)
+- k8s github (https://github.com/xiaopeng163/docker-k8s-lab)
+- e8-db-on-docker (https://github.com/devteds/e8-db-on-docker)
 
 ## Docker
 
