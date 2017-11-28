@@ -36,7 +36,11 @@ $ docker rm $(docker ps -a -q)
 ```
 // remover all docker images
 ```
-# docker rmi #(docker images -q)
+$ docker rmi #(docker images -q)
+```
+// unset docker-machine env
+```
+$ eval $(docker-machine env -u)
 ```
 
 ## Docker
