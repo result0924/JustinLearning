@@ -1,9 +1,43 @@
 # Docker Note
 
-## Refer
+### Refer
 - docker k8s note(http://docker-k8s-lab.readthedocs.io/en/latest/)
 - k8s github (https://github.com/xiaopeng163/docker-k8s-lab)
 - e8-db-on-docker (https://github.com/devteds/e8-db-on-docker)
+- github (https://github.com/xiaopeng163/docker-k8s-lab)
+- peihsinsu docker note (https://www.gitbook.com/book/peihsinsu/docker-note-book/details)
+- docker 從入門到實踐(https://www.gitbook.com/book/philipzheng/docker_practice/details)
+
+### Note
+// del all status=exited container
+```
+$ docker container ls -f status=created | awk '{print$1}' | awk 'NR>1' | xargs docker container start
+// show all status=exited container
+// show first column
+// remove one raw
+// delete all list container id
+```
+or you can
+```
+$ docker container start $(docker container ls -q -f status=created)
+// -q display all numeric IDs
+```
+
+// if your docker image repository=<none> user docker tag to set
+- refer (https://docs.docker.com/engine/reference/commandline/tag/)
+
+// stop all container
+```
+$ docker stop $(docker ps -a -q)
+```
+// remover all container
+```
+$ docker rm $(docker ps -a -q)
+```
+// remover all docker images
+```
+# docker rmi #(docker images -q)
+```
 
 ## Docker
 
@@ -91,7 +125,7 @@ $ docker container create busybox
 ```
 $ docker container ls -a
 // -a show all status
-// if not add -a will only show status=
+// if not add -a will only show status=exited
 ```
 
 // start docker container
@@ -118,21 +152,6 @@ $ docker container rm container_id
 ```
 $ docker container run -d --name demo busybox sh -c "while true; do sleep 3600; done"
 // -d background thread
-```
-
-### Note
-// del all status=exited container
-```
-$ docker container ls -f status=created | awk '{print$1}' | awk 'NR>1' | xargs docker container start
-// show all status=exited container
-// show first column
-// remove one raw
-// delete all list container id
-```
-or you can
-```
-$ docker container start $(docker container ls -q -f status=created)
-// -q display all numeric IDs
 ```
 
 ### Linux network namespace
