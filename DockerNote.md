@@ -42,6 +42,8 @@ $ docker rmi -f $(docker images -q)
 ```
 $ eval $(docker-machine env -u)
 ```
+// can't delete some image
+- refer (https://github.com/moby/moby/issues/12487)
 
 ## Docker
 
