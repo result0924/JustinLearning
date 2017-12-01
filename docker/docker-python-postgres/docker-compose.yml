@@ -1,0 +1,28 @@
+version: '3'
+
+services: 
+  web:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/app
+    depends_on:
+      - pgdb
+    links:
+      - pgdb
+    
+  pgdb:
+    image: postgres
+    restart: always
+    ports:
+      - 55432:5432
+    environment:
+      POSTGRES_USER: justin
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: justin_test
+
+  admin:
+    image: adminer
+    ports:
+      - 8088:8080
