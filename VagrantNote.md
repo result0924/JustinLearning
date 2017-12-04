@@ -1,6 +1,7 @@
 # Vagrant Note
 
 ## Refer
+- vagrant (https://www.vagrantup.com/)
 - [How to install Ruby on Rails with rbenv on Ubuntu] (https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04)
 
 ## Note
