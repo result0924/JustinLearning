@@ -1,14 +1,16 @@
-version: '3'
+version: '2.1'
 
 services: 
   web:
     build: .
+    command: ["python", "app.py"]
     ports:
       - "8000:80"
     volumes:
       - .:/app
     depends_on:
-      - pgdb
+      pgdb:
+        condition: service_healthy
     links:
       - pgdb
     
@@ -18,9 +20,14 @@ services:
     ports:
       - 55432:5432
     environment:
-      POSTGRES_USER: justin
+      POSTGRES_USER: root
       POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: justin_test
+      POSTGRES_DB: root
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
 
   admin:
     image: adminer
