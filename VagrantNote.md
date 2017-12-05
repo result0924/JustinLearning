@@ -165,3 +165,8 @@ Chef Server Reconfigured!
 
 - two host in vagrant(https://github.com/xiaopeng163/docker-k8s-lab/blob/master/lab/k8s/multi-node/vagrant/Vagrantfile)
 
+- how to remove vagrant
+    1. vagrant halt
+    2. vagrant destory
+    3. rm .vagrant
+    4. vagrant box remove `box_name`
