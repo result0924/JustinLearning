@@ -51,7 +51,13 @@ vagrant ssh
 7. install your software
 ### Pre-requisites
 ```
-sudo apt-get -y update
+sudo apt-get autoclean
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get -u dist-upgrade
+
+sudo dpkg --configure -a
+sudo apt-get -f install
 ```
 ```
 sudo apt-get --no-install-recommends -y install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev libgdbm-dev ncurses-dev automake libtool bison subversion pkg-config libffi-dev vim libc6 libc6-dev libc6-dbg
@@ -130,13 +136,26 @@ Verify that Ruby was properly installed by checking your version number:
 ruby -v
 ```
 
-### install chef
-- download chef
+### install chef solo
+- download chef solo
+```
+# from https://downloads.chef.io
+
+wget https://packages.chef.io/files/stable/chef/13.6.4/ubuntu/14.04/chef_13.6.4-1_amd64.deb
+```
+
+- install chef solo
+```
+sudo dpkg -i chef_13.6.4-1_amd64.deb
+```
+
+### install chef server
+- download chef server
 ```
 wget https://packages.chef.io/files/stable/chef-server/12.17.5/ubuntu/14.04/chef-server-core_12.17.5-1_amd64.deb
 ```
 
-- install chef
+- install chef server
 ```
 sudo dpkg -i chef-server-core_12.17.5-1_amd64.deb
 ```
