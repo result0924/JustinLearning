@@ -1,0 +1,91 @@
+version: '3'
+services:
+  postgresql-data:
+    image: chefdemo/postgresql-data:stable
+    volumes:
+      - postgresql-data:/hab/svc/postgresql/data
+
+  postgresql:
+    image: chefdemo/postgresql:${VERSION:-stable}
+    depends_on:
+      - postgresql-data
+    environment:
+      HAB_POSTGRESQL: |
+        [superuser]
+        name = 'hab'
+        password = 'chefrocks'
+    volumes:
+      - postgresql-data:/hab/svc/postgresql/data
+
+  rabbitmq:
+    image: chefdemo/rabbitmq:${VERSION:-stable}
+    command: --peer postgresql
+    depends_on:
+      - postgresql
+    environment:
+      HAB_RABBITMQ: |
+        [rabbitmq]
+        default_vhost = '/insights'
+        default_user = 'insights'
+        default_pass = 'chefrocks'
+        [rabbitmq.management]
+        enabled = true
+
+  elasticsearch:
+    image: chefdemo/elasticsearch:${VERSION:-stable}
+    command: --peer postgresql
+    depends_on:
+      - postgresql
+
+  logstash:
+    image: chefdemo/logstash:${VERSION:-stable}
+    command: --peer postgresql
+      --bind elasticsearch:elasticsearch.default
+      --bind rabbitmq:rabbitmq.default
+    depends_on:
+      - postgresql
+
+  workflow-server:
+    image: chefdemo/workflow-server:${VERSION:-stable}
+    command: --peer postgresql
+      --bind database:postgresql.default
+      --bind elasticsearch:elasticsearch.default
+      --bind rabbitmq:rabbitmq.default
+    depends_on:
+      - postgresql
+    volumes:
+      - maintenance:/var/opt/delivery/delivery/etc
+
+  notifications:
+    image: chefdemo/notifications:${VERSION:-stable}
+    command: --peer postgresql
+      --bind elasticsearch:elasticsearch.default
+      --bind rabbitmq:rabbitmq.default
+    depends_on:
+      - postgresql
+
+  compliance:
+    image: chefdemo/compliance:${VERSION:-stable}
+    command: --peer postgresql
+      --bind elasticsearch:elasticsearch.default
+    depends_on:
+      - postgresql
+
+  automate-nginx:
+    image: chefdemo/automate-nginx:${VERSION:-stable}
+    command: --peer postgresql
+      --bind compliance:compliance.default
+      --bind elasticsearch:elasticsearch.default
+      --bind workflow:workflow-server.default
+      --bind notifications:notifications.default
+    depends_on:
+      - postgresql
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - maintenance:/var/opt/delivery/delivery/etc
+
+volumes:
+  postgresql-data:
+  maintenance:
