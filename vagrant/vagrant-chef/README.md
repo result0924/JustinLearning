@@ -1,0 +1,1 @@
+- Refer https://github.com/erikaheidi/cfmgmt/blob/master/chef/Vagrantfile
