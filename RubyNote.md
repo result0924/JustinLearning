@@ -10,7 +10,7 @@
 
 ### Boolean
 ```
-equal `==`
+equal `==`
 not equal `!=`
 greater and equal `>=`
 less and equial `<=`
@@ -144,6 +144,78 @@ end
 5.times {puts "Hello"}
 ```
 
+### function
+```
+def add(a=3,b=2) # will have default valu when not have a or b
+    return a+b
+end
+```
+
+### class
+```
+# use new to create class
+String.new("33")
+
+# create class
+class Student
+    Version = "1.0" #constant
+
+    attr_accessor :no # let no can read write
+    attr_reader : no # let no only can read
+    attr_write : no # let no only can write
+    
+    def initialize(name, no, gendder)
+        @name = name
+        @no = no
+        @gender = gender
+    end
+    
+    #setter
+    def name=(name)
+        @name = name
+    end
+    #getter
+    def name
+        return @name
+    end
+    
+    def sayHi
+        puts "I am #{#name}, no is #{@no}"
+    end
+    
+    private # only self's class can use
+    def sayNo
+        puts "say NO"
+    end
+end
+
+class UniversityStudent < Student # `<` ruby's inherit class
+    defy say_englist
+        print "my englisth is verry good"
+    end
+end
+
+class Student
+    def say_extend_class
+        p "Hello"
+    end
+end
+# require class's file
+a = Student("Bob", "1", "male")
+a.sayHi
+Student::Version # show class's constant
+
+# extend
+class String
+    def self.nick_name
+        p "jlai"
+    end
+    
+    def self.name
+        p "change name"
+    end
+end
+```
 ### Note
 
 - Every things is object in Ruby
