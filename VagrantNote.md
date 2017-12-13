@@ -5,7 +5,6 @@
 - [How to install Ruby on Rails with rbenv on Ubuntu] (https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04)
 - vagrant and chef git tutorial
     - https://github.com/w8s/flask_api_sample
-    - https://github.com/ShawnMcCool/vagrant-chef
 
 ## Note
 - Vagrant box's path `~/.vagrant.d/boxes`
@@ -183,6 +182,11 @@ and you will see
 ```
 Chef Client finished, 492/1082 resources updated in 09 minutes 30 seconds
 Chef Server Reconfigured!
+```
+
+- install chfDK
+```
+curl -s https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk
 ```
 
 - two host in vagrant(https://github.com/xiaopeng163/docker-k8s-lab/blob/master/lab/k8s/multi-node/vagrant/Vagrantfile)
