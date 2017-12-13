@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define :app do |app_config|
+    app_config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--name", "app", "--memory", "512"]
+    end
+
+    app_config.vm.box = "ubuntu/precise64"
+    app_config.vm.hostname = "app"
+    app_config.vm.network "private_network", ip: "33.33.13.10"
+    app_config.vm.network "forwarded_port", guest:80, host:8888
+    app_config.vm.network "forwarded_port", guest:22, host:2233
+
+    config.vm.provision "chef_solo" do |chef|
+      chef.add_recipe "apt"
+      chef.add_recipe "git"
+      chef.add_recipe "nginx"
+    end
+  end
+end
