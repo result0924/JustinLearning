@@ -1,2 +1,4 @@
 H2ServerNote.md
 .vagrant
+.DS_Store
+.vscode
