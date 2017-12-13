@@ -3,6 +3,9 @@
 ## Refer
 - vagrant (https://www.vagrantup.com/)
 - [How to install Ruby on Rails with rbenv on Ubuntu] (https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04)
+- vagrant and chef git tutorial
+    - https://github.com/w8s/flask_api_sample
+    - https://github.com/ShawnMcCool/vagrant-chef
 
 ## Note
 - Vagrant box's path `~/.vagrant.d/boxes`
