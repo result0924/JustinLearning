@@ -1,0 +1,30 @@
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: sles-11sp3
+    driver_config:
+      box: opscode-sles-11sp3
+  - name: opensuse-13.1
+  - name: opensuse-leap-42.2
+
+suites:
+  - name: default
+    run_list:
+      - recipe[zypper::default]
+    attributes:
+  - name: lwrp
+    run_list:
+      - recipe[zypper-test]
+    attributes:
+  - name: smt-client
+    includes:
+    - sles-11sp3
+    run_list:
+      - recipe[zypper::smt_client]
+    attributes:
+      zypper:
+        smt_host: <%= ENV['SMT_HOST'] %>

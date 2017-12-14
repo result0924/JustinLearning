@@ -1,0 +1,78 @@
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  deprecations_as_errors: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: amazonlinux
+    driver_config:
+      box: mvbcoding/awslinux
+  - name: centos-6
+  - name: centos-7
+  - name: debian-7
+  - name: debian-8
+  - name: debian-9
+  - name: fedora-26
+  - name: freebsd-10
+  - name: freebsd-11
+  - name: opensuse-leap-42
+  - name: ubuntu-14.04
+  - name: ubuntu-16.04
+  - name: ubuntu-16.04-chef-12.7
+    driver_config:
+      box: bento/ubuntu-16.04
+    provisioner:
+      require_chef_omnibus: 12.7.2
+
+suites:
+  - name: distro_packages
+    run_list:
+      - recipe[test::distro_packages]
+    excludes: # these all lack distro packages
+      - centos-6
+      - centos-7
+  - name: source
+    run_list:
+      - recipe[test::source]
+  - name: epel
+    run_list:
+      - recipe[test::epel]
+    includes:
+      - centos-6
+      - centos-7
+      - freebsd-10
+      - freebsd-11
+  - name: source
+    run_list:
+      - recipe[test::source]
+  - name: upstream_repo
+    run_list:
+      - recipe[test::upstream_repo]
+    excludes:
+      - fedora-26 # lacks nginx repo
+      - ubuntu-16.04-chef-12.7
+      - freebsd-10
+      - freebsd-11
+  - name: modules
+    run_list:
+      - recipe[test::modules]
+    excludes:
+      - ubuntu-16.04-chef-12.7
+      - freebsd-10
+      - freebsd-11
+  - name: passenger
+    run_list:
+      - recipe[test::passenger_packages]
+    excludes: # passenger distro install is not compatible with these
+      - ubuntu-16.04-chef-12.7
+      - freebsd-10
+      - freebsd-11
+      - opensuse-leap-42
+      - centos-6
+      - centos-7
+      - fedora-26
