@@ -5,3 +5,5 @@
 - you must notice dependence package when use cookboos
 
 - you must set `chef.cookbooks_path` when cookboos's path not in root document
+
+- include_recipe 'xxx' which also require a depends 'xxx' line in metadata

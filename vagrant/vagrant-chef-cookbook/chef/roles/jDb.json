@@ -1,0 +1,16 @@
+{
+    "name": "db",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "description": "db server",
+    "run_list": [
+        "recipe[my::db]"
+    ],
+    "default_attributes": {
+        "apt": {
+            "confd" : {
+                "install_recommends": false
+            }
+        }
+    }
+}

@@ -34,3 +34,12 @@
 [submodule "vagrant/vagrant-chef-cookbook/cookbooks/zypper"]
 	path = vagrant/vagrant-chef-cookbook/cookbooks/zypper
 	url = https://github.com/jarosser06/chef-zypper
+[submodule "vagrant/vagrant-chef-cookbook/chef/cookbooks/ntp"]
+	path = vagrant/vagrant-chef-cookbook/chef/cookbooks/ntp
+	url = https://github.com/chef-cookbooks/ntp
+[submodule "vagrant/vagrant-chef-cookbook/chef/cookbooks/postgresql"]
+	path = vagrant/vagrant-chef-cookbook/chef/cookbooks/postgresql
+	url = https://github.com/sous-chefs/postgresql
+[submodule "vagrant/vagrant-chef-cookbook/chef/cookbooks/openssl"]
+	path = vagrant/vagrant-chef-cookbook/chef/cookbooks/openssl
+	url = https://github.com/chef-cookbooks/openssl

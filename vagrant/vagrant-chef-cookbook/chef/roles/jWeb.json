@@ -1,0 +1,21 @@
+{
+    "name": "web",
+    "description": "web server and application",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "run_list": [
+        "recipe[my::web]"
+    ],
+    "default_attributes": {
+        "h2": {
+            "db": {
+                "host": "192.168.77.31"
+            }
+        },
+        "apt": {
+            "confd" : {
+                "install_recommends": false
+            }
+        }
+    }
+}

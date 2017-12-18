@@ -1,23 +1,52 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+boxes = [
+  { :name => :web, :role => "jWeb", :os => "ubuntu/precise64", :ip => "192.168.77.30", :http_forward => 8888},
+  { :name => :db,  :role => "jDb", :os => "ubuntu/precise64", :ip => "192.168.77.31", :db_forward => 5555},
+]
+
+Vagrant.require_version ">= 1.6.0"
+
 Vagrant.configure("2") do |config|
-  config.vm.define :app do |app_config|
-    app_config.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm", :id, "--name", "app", "--memory", "512"]
+    chef_default = proc do |chef|
+      chef.channel = "stable"
+      chef.version = "12.18.31"
+      chef.cookbooks_path = [
+        "chef/cookbooks", 
+        "chef/my-cookbooks"
+      ]
+      chef.roles_path = "chef/roles"
+    end
+    boxes.each do |opts|
+      config.vm.define opts[:name] do |cfg|
+          cfg.vm.box = opts[:os]
+          cfg.vm.hostname = "h2-%s" % opts[:name].to_s
+          cfg.vm.network "private_network", ip: opts[:ip].to_s
+          cfg.vm.network :forwarded_port, guest: 80, host: opts[:http_forward] if opts[:http_forward]
+          cfg.vm.network :forwarded_port, guest: 5432, host: opts[:db_forward] if opts[:db_forward]
+          cfg.vm.provision :chef_solo do |chef|
+              chef_default.call(chef)
+              chef.add_role opts[:role].to_s
+              chef.add_recipe "ntp"
+          end
+      end
     end
 
-    app_config.vm.box = "ubuntu/precise64"
-    app_config.vm.hostname = "app"
-    app_config.vm.network "private_network", ip: "33.33.13.10"
-    app_config.vm.network "forwarded_port", guest:80, host:8888
-    app_config.vm.network "forwarded_port", guest:22, host:2233
+    # app_config.vm.provider :virtualbox do |vb|
+    #     vb.customize ["modifyvm", :id, "--name", "app", "--memory", "512"]
+    # end
 
-    config.vm.provision "chef_solo" do |chef|
-      chef.cookbooks_path = "chef/cookbooks"
-      chef.add_recipe "apt"
-      chef.add_recipe "git"
-      chef.add_recipe "nginx"
-    end
-  end
+    # app_config.vm.box = "ubuntu/precise64"
+    # app_config.vm.hostname = "app"
+    # app_config.vm.network "private_network", ip: "33.33.13.10"
+    # app_config.vm.network "forwarded_port", guest:80, host:8888
+    # app_config.vm.network "forwarded_port", guest:22, host:2233
+
+    # config.vm.provision "chef_solo" do |chef|
+    #   chef.cookbooks_path = "chef/cookbooks"
+    #   chef.add_recipe "apt"
+    #   chef.add_recipe "git"
+    #   chef.add_recipe "nginx"
+    # end
 end
