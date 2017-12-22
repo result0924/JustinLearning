@@ -246,3 +246,5 @@ symbol is immutable but string is mutable
 ```
 
 - DSL(Domain Specific Language)
+
+- class method and instance method different(http://motion-express.com/blog/20141208-class-method-and-instance-method)

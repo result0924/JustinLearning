@@ -4,7 +4,7 @@
     "json_class": "Chef::Role",
     "description": "db server",
     "run_list": [
-        "recipe[my::db]"
+        "recipe[custom_db]"
     ],
     "default_attributes": {
         "apt": {

@@ -1,4 +1,4 @@
-name 'my'
+name 'web'
 maintainer 'Justin'
 maintainer_email 'jlai@health2sync.com'
 license 'all_rights'

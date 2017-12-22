@@ -6,4 +6,4 @@
 #
 
 include_recipe "apt"
-include_recipe "postgresql"
+include_recipe "postgresql::server"

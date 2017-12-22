@@ -17,6 +17,11 @@
 $ vagrant box add {your box} {downloat url}
 ```
 
+// how to copy a file from vagrant to locale
+```
+$ vagrant ssh -c "sudo cat /etc/postgresql/9.4/main/postgresql.conf" > postgresql.conf
+```
+
 ## install Ubuntu
 
 1. add box in vagrant 

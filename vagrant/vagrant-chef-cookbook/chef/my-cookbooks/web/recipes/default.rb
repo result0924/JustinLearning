@@ -5,3 +5,4 @@
 
 include_recipe "apt"
 include_recipe "nginx"
+include_recipe "nginx::set_misc"
