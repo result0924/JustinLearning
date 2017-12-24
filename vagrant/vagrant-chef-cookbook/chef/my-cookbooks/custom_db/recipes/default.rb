@@ -14,7 +14,7 @@ execute "Update package sources" do
 end
 
 execute "Install postgresql" do
-  command "sudo apt-get install postgresql-9.6 -y"
+  command "sudo apt-get install postgresql-9.4 -y"
 end
 
 #define the Apache service
