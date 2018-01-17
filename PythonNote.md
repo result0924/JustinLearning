@@ -144,4 +144,18 @@ greet_me(name="yasoob")
 name == yasoob
 ```
 
+### pip (安裝python package的工具)
+```
+原始安裝package的方法
+下載zip再到目錄裡執行
+python setup.py install
 
+- where to find python package
+pypi.python.org/pypi
+
+- pip install package
+`pip install flask`
+
+- show has install package
+`pip list`
+```
