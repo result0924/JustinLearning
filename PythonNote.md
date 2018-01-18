@@ -158,4 +158,30 @@ pypi.python.org/pypi
 
 - show has install package
 `pip list`
+
+// install all package in requirements.txt
+pip install -r requirements.txt
+
+pip freeze
+列出所有第三方軟體
+
+// install virtualenv
+sudo pip install virtualenv
+
+// virtualenv
+建立python的虛擬環境test
+virtualenv test
+// 使用test虛擬環境
+source test/bin/activate
+// 離開虛擬環境
+deactive test
+
+sudo pip install virtualenvwrapper
+// 創建一個目錄管理virtualenv、以後所有虛擬環境都會放在這個envs裡面
+mkdir envs
+export WORKON_HOME=~/envs
+source /usr/bin/virtualenvwrapper.sh
+mkvirtualenv test1
+
+work on // 快速切env
 ```
