@@ -184,4 +184,5 @@ source /usr/bin/virtualenvwrapper.sh
 mkvirtualenv test1
 
 work on // 快速切env
+[refer]: <https://www.jianshu.com/p/44ab75fbaef2>
 ```

@@ -5,17 +5,5 @@
     "json_class": "Chef::Role",
     "run_list": [
         "recipe[web]"
-    ],
-    "default_attributes": {
-        "h2": {
-            "db": {
-                "host": "192.168.77.31"
-            }
-        },
-        "apt": {
-            "confd" : {
-                "install_recommends": false
-            }
-        }
-    }
+    ]
 }

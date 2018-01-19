@@ -4,6 +4,7 @@
 boxes = [
   { :name => :web, :role => "jWeb", :os => "ubuntu/precise64", :ip => "192.168.77.30", :http_forward => 8888},
   { :name => :db,  :role => "jDb", :os => "ubuntu/precise64", :ip => "192.168.77.31", :db_forward => 5555},
+  { :name => :dbSlave, :role => "jDb", :os=> "ubuntu/precise64", :ip => "192.168.77.32", :db_forward => 6666}
 ]
 
 Vagrant.require_version ">= 1.6.0"
