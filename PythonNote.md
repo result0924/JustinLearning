@@ -185,4 +185,11 @@ mkvirtualenv test1
 
 work on // 快速切env
 [refer]: <https://www.jianshu.com/p/44ab75fbaef2>
+
+在某個專案使用python3.x開發
+python的路徑可以用which pytho3.x看到
+-a 接project的目錄
+mkvirtualenv --python=/usr/local/bin/python3.x -a . -r requirements.txt
 ```
+
+### pep (python enhancement proposals)
