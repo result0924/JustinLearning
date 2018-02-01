@@ -8,6 +8,8 @@
 
 - ruby 中文論壇(http://railsfun.tw/)
 
+- ruby 電子書(https://railsbook.tw/)
+
 ### Boolean
 ```
 equal `==`
