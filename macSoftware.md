@@ -12,3 +12,9 @@
 - sublime text
 
 - slack
+
+- visual studo coe
+
+- pgadmin
+
+- post man
