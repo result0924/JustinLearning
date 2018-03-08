@@ -18,3 +18,7 @@
 - pgadmin
 
 - post man
+
+- obj clean
+
+- gitx (https://github.com/rowanj/gitx)
