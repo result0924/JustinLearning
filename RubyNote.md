@@ -250,3 +250,26 @@ symbol is immutable but string is mutable
 - DSL(Domain Specific Language)
 
 - class method and instance method different(http://motion-express.com/blog/20141208-class-method-and-instance-method)
+
+- 範圍(Range)
+```
+二個點`..`
+1..5會是1~5
+和三個點`...`
+1...5會是1~4不包括5
+```
+
+- symbol和字串的比較
+```
+1. symbol是不可改的、字串是可以改的
+2. 字串的效能比較差一點、因為每次產生一個新的字串的時候，它都會去要一塊新的記點體
+3. symbol的比較比字串快
+4. 字串和symbol是可以互相轉換的
+5. hash裡的key是symbol
+```
+
+- 模組和類別的差別
+```
+1. 模組沒辦法new一個新的實體出來
+2. 模組沒辦法繼承別的模組
+```
