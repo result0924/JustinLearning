@@ -22,3 +22,6 @@
 - obj clean
 
 - gitx `brew cask install rowanj-gitx`
+
+	- Refer: https://stackoverflow.com/questions/39914454/gitx-on-mac-os-sierra-objective-c-garbage-collection-is-no-longer-supported
+
