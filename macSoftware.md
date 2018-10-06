@@ -21,4 +21,4 @@
 
 - obj clean
 
-- gitx (https://github.com/rowanj/gitx)
+- gitx `brew cask install rowanj-gitx`
